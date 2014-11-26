@@ -1,4 +1,4 @@
-def gen(n=20):
+def gen(n=21):
     glist = []
     for i in range(n-1):
         for j in range(n-1):
@@ -10,13 +10,13 @@ def gen(n=20):
     return glist
 
 
-def dfs(root, s=0, t=399, graph=gen()):
+def dfs(root, t=440, graph=gen(), visited={}):
     if root == t:
         return 1
-    queue = graph[root]
+    if root in visited:
+        return visited[root]
     counter = 0
-    for node in queue:
+    for node in graph[root]:
         counter += dfs(node)
-
+    visited[root] = counter
     return counter
-
